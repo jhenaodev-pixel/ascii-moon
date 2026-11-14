@@ -91,26 +91,27 @@ body {
 .sound-hint {
   position: fixed;
   left: 50%;
-  bottom: 42px;
+  bottom: 56px;
   z-index: 4;
   margin: 0;
-  transform: translate(-50%, 6px);
-  font-size: 9px;
+  transform: translate(-50%, 8px);
+  font-size: 11px;
   font-weight: 400;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--rose);
+  color: #ffbccd;
   opacity: 0;
   pointer-events: none;
   white-space: nowrap;
-  transition: opacity 1.4s ease, transform 1.4s ease;
-  text-shadow: 0 0 18px rgba(255, 80, 135, 0.4);
+  transition: opacity 1.1s ease, transform 1.1s ease;
+  text-shadow: 0 0 14px rgba(255, 90, 140, 0.65),
+    0 0 42px rgba(255, 60, 120, 0.35);
 }
 
 .sound-hint.show {
-  opacity: 0.62;
+  opacity: 0.92;
   transform: translate(-50%, 0);
-  animation: hintPulse 3.6s ease-in-out infinite;
+  animation: hintPulse 2.6s ease-in-out infinite;
 }
 
 .credit {
@@ -144,17 +145,17 @@ body {
 @keyframes hintPulse {
   0%,
   100% {
-    opacity: 0.42;
+    opacity: 0.62;
   }
   50% {
-    opacity: 0.78;
+    opacity: 0.95;
   }
 }
 
 @media (max-width: 640px) {
   .sound-hint {
-    bottom: 38px;
-    font-size: 7.5px;
+    bottom: 46px;
+    font-size: 9.5px;
     letter-spacing: 0.14em;
   }
 

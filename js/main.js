@@ -208,17 +208,24 @@
     let unlocking = false;
 
     const targetVolume = 0.52;
+    let fading = false;
     audio.volume = 0;
 
     const fadeIn = () => {
-      let start = 0;
-      const step = (ts) => {
-        if (!start) start = ts;
-        const t = Math.min(1, (ts - start) / 2200);
+      if (fading) return;
+      fading = true;
+      /* temporizador, no rAF: suena aunque la pestaña esté en segundo plano */
+      const start = Date.now();
+      const id = window.setInterval(() => {
+        const t = Math.min(1, (Date.now() - start) / 1400);
         audio.volume = targetVolume * t;
-        if (t < 1) window.requestAnimationFrame(step);
-      };
-      window.requestAnimationFrame(step);
+        if (t >= 1) window.clearInterval(id);
+      }, 60);
+
+      window.setTimeout(() => {
+        window.clearInterval(id);
+        audio.volume = targetVolume;
+      }, 1600);
     };
 
     const hideHint = () => hint.classList.remove("show");
@@ -255,19 +262,23 @@
     const unlock = () => play();
 
     window.addEventListener("pointerdown", unlock, { passive: true });
+    window.addEventListener("pointerup", unlock, { passive: true });
+    window.addEventListener("click", unlock);
     window.addEventListener("touchstart", unlock, { passive: true });
+    window.addEventListener("touchend", unlock, { passive: true });
     window.addEventListener("keydown", unlock);
 
     audio.addEventListener("playing", () => {
       started = true;
       hideHint();
+      if (audio.volume < 0.05) fadeIn();
     });
 
     /* intento de autoplay; si el navegador lo bloquea, aparece la pista */
-    window.setTimeout(play, 450);
+    window.setTimeout(play, 400);
     window.setTimeout(() => {
       if (!started) showHint();
-    }, 1800);
+    }, 1200);
   }
 
   /* ---------------------------------------------------------- */
