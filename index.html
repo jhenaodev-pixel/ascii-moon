@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#05040c" />
+  <meta name="description" content="Una luna ASCII enorme y un corazón que orbita a su alrededor, sobre un cielo lleno de estrellas." />
+  <title>mi corazón, mi luna</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="stage">
+    <canvas id="scene" aria-label="Una luna ASCII gigante con cráteres y un corazón que gira a su alrededor, rodeados de estrellas"></canvas>
+
+    <div class="fx fx-grain" aria-hidden="true"></div>
+    <div class="fx fx-vignette" aria-hidden="true"></div>
+
+    <p class="sound-hint" id="sound-hint">♪ toca en cualquier lugar para escuchar</p>
+
+    <p class="credit">
+      <span class="credit-title">mi corazón, mi luna</span>
+      <span class="credit-sep">·</span>
+      <span>Mitski — My Love Mine All Mine</span>
+    </p>
+  </main>
+
+  <audio
+    id="music"
+    src="assets/music/mitski-my-love-mine-all-mine.mp3"
+    preload="auto"
+    loop
+    playsinline
+  ></audio>
+
+  <script src="js/core.js"></script>
+  <script src="js/starfield.js"></script>
+  <script src="js/heart.js"></script>
+  <script src="js/moon.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
